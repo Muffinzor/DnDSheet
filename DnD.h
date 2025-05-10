@@ -71,7 +71,7 @@ namespace DnD {
     }
     inline std::string race_bonuses(const Race race_) {
         switch (race_) {
-            case Race::Human: return "";
+            case Race::Human: return "+1 Str +1 Cha";
             case Race::Elf: return "+2 Dex";
             case Race::Half_Elf: return "+1 Dex +1 Cha";
             case Race::Half_Orc: return "+2 Str";

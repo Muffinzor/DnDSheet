@@ -4,6 +4,6 @@
 
 int main() {
     Character character = Character();
-    Console::get_class(character);
+    Console::get_race(character);
     return 0;
 }

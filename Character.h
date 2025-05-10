@@ -12,6 +12,7 @@ public:
     DnD::Class character_class;
     DnD::Race character_race;
     array<int, 6> stats{};
+    array<int, 6> race_bonus{};
 
     Character();
     void set_name(const string &name);
