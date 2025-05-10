@@ -20,6 +20,7 @@ namespace DnD {
 
     inline std::string class_to_string(const Class class_) {
         switch (class_) {
+            case Class::None:return "None";
             case Class::Fighter: return "Fighter";
             case Class::Wizard: return "Wizard";
             case Class::Rogue: return "Rogue";
@@ -52,6 +53,7 @@ namespace DnD {
 
     inline std::string race_to_string(const Race race_) {
         switch (race_) {
+            case Race::None: return "Unknown";
             case Race::Human: return "Human";
             case Race::Elf: return "Elf";
             case Race::Half_Elf: return "Half_Elf";
@@ -67,6 +69,7 @@ namespace DnD {
     }
     inline std::string race_bonuses(const Race race_) {
         switch (race_) {
+            case Race::None: return "None";
             case Race::Human: return "+1 Str +1 Cha";
             case Race::Elf: return "+2 Dex";
             case Race::Half_Elf: return "+1 Dex +1 Cha";
@@ -78,6 +81,7 @@ namespace DnD {
             case Race::Tiefling: return "+1 Int +1 Cha";
             case Race::Drow: return "+1 Dex +1 Int";
         }
+        return "";
     }
 }
 

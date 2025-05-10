@@ -38,7 +38,7 @@ void DiceRoller::confirm_stat_rolls(vector<int> &rolls_) {
 }
 
 void DiceRoller::display_stat_rolls(const vector<int> &rolls_) {
-    for (int i = 0; i < rolls_.size(); i++) {
+    for (unsigned int i = 0; i < rolls_.size(); i++) {
         printf("%d: %d\n", i + 1, rolls_[i]);
     }
 }

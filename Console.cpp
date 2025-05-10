@@ -6,15 +6,21 @@
 #include <limits>
 #include <iostream>
 
+void Console::clearScreen() {
+    std::cout << "\033[2J\033[H" << std::flush;
+}
+
 void Console::get_name(Character &character) {
+    clearScreen();
     std::cout << "Enter your name:\n>";
     std::cout.flush();
     std::getline(std::cin, character.name);
 }
 
 void Console::get_lvl(Character &character) {
+    clearScreen();
     int lvl;
-    std::cout << "What's your character's level:\n";
+    std::cout << "What's your character's level:\n>";
     cin >> lvl;
     while (!(lvl > 0 && lvl <= 20)) {
         std::cout << "Pick a value between 1 and 20\n>";
@@ -26,6 +32,7 @@ void Console::get_lvl(Character &character) {
 }
 
 void Console::get_class(Character &character) {
+    clearScreen();
     int choice;
     std::cout << "Pick your class:\n";
     display_class_choices();
@@ -48,6 +55,7 @@ void Console::display_class_choices() {
 }
 
 void Console::get_race(Character &character) {
+    clearScreen();
     int choice;
     std::cout << "Pick your race:\n";
     printf("%-17s %-10s\n", "  Race", "Stats Bonus");

@@ -10,7 +10,7 @@ public:
     static void get_class(Character &character);
     static void display_race_choices();
     static void get_race(Character &character);
-
+    static void clearScreen();
 };
 
 #endif //CONSOLE_H

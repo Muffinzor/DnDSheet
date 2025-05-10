@@ -4,6 +4,7 @@
 #include <limits>
 #include <vector>
 #include "DiceRoller.h"
+#include "Console.h"
 
 Character::Character() {
     this->character_class = DnD::Class::None;
@@ -49,6 +50,8 @@ void Character::set_initial_hp() {
         case DnD::Class::Sorcerer:
             initial_value = 6;
             break;
+        case DnD::Class::None:
+            initial_value = 2;
     }
     this->hp = initial_value + get_stat_modifier(2);
 }
@@ -62,7 +65,7 @@ void Character::set_lvl_hp() {
 
 
 void Character::apply_race_bonus() {
-    for (int i = 0; i < this->race_bonus.size(); i++) {
+    for (unsigned int i = 0; i < this->race_bonus.size(); i++) {
         this->stats[i] += this->race_bonus[i];
     }
 }
@@ -74,6 +77,7 @@ void Character::assign_stats(vector<int> &rolls_) {
 }
 
 void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
+    Console::clearScreen();
     printf("Here are your remaining rolls:\n");
     DiceRoller::display_stat_rolls(rolls_);
     string stat_string;
@@ -85,7 +89,7 @@ void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
         case 4: stat_string = "Wisdom"; break;
     }
     printf("%s %s\n>", "Assign your", stat_string.c_str());
-    int choice;
+    unsigned int choice;
     cin >> choice;
     while (!(choice > 0 && choice <= rolls_.size())) {
         std::cout << "Invalid choice, please pick again:\n> ";
@@ -98,6 +102,7 @@ void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
 }
 
 void Character::display_stats() const {
+    Console::clearScreen();
     printf("Name: %s\n", this->name.c_str());
     printf("Level %d %s\n",this->lvl, DnD::class_to_string(this->character_class).c_str());
     for (int i = 0; i < 6; i++) {
