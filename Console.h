@@ -11,6 +11,8 @@ public:
     static void display_race_choices();
     static void get_race(Character &character);
     static void clearScreen();
+    static void ask_to_print(Character &character);
+    static void save_textfile(Character &character);
 };
 
 #endif //CONSOLE_H

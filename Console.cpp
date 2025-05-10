@@ -4,7 +4,9 @@
 
 #include "Console.h"
 #include <limits>
+#include <algorithm>
 #include <iostream>
+#include <fstream>
 
 void Console::clearScreen() {
     std::cout << "\033[2J\033[H" << std::flush;
@@ -89,6 +91,35 @@ void Console::display_race_choices() {
         printf("%s\n", DnD::race_bonuses(character_race).c_str());
     }
     cout << "\nYour choice:\n>";
+}
+
+void Console::ask_to_print(Character &character) {
+    printf("\nDo you want to save this character sheet as a text file? y/n\n>");
+    char choice;
+    cin >> choice;
+    while (!(choice == 'y' || choice == 'n')) {
+        std::cout << "Invalid choice, please type 'y' or 'n':\n> ";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> choice;
+    }
+    if(choice == 'y') {
+        save_textfile(character);
+    } else {
+        printf("Very well, see you next time!\n");
+    }
+}
+
+void Console::save_textfile(Character &character) {
+    string filename = character.name;
+    std::replace(filename.begin(), filename.end(), ' ', '_');
+    filename += ".txt";
+    std::ofstream file(filename.c_str());
+    if (file.is_open()) {
+        character.display_stats(file);
+        file.close();
+        printf("It's done!\n");
+    }
 }
 
 

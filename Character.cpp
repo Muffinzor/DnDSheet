@@ -1,6 +1,7 @@
 #include "Character.h"
 
 #include <iostream>
+#include <iomanip>
 #include <limits>
 #include <vector>
 #include "DiceRoller.h"
@@ -74,6 +75,7 @@ void Character::assign_stats(vector<int> &rolls_) {
         assign_individual_stats(rolls_, i);
     }
     this->stats[5] = rolls_[0];
+    Console::clearScreen();
 }
 
 void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
@@ -101,13 +103,13 @@ void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
     rolls_.erase(rolls_.begin() + (choice-1));
 }
 
-void Character::display_stats() const {
-    Console::clearScreen();
-    printf("Name: %s\n", this->name.c_str());
-    printf("Level %d %s\n",this->lvl, DnD::class_to_string(this->character_class).c_str());
+void Character::display_stats(std::ostream& out) const {
+    out << "Name: " << this->name << '\n';
+    out << "Level " << this->lvl << ' ' << DnD::class_to_string(this->character_class) << '\n';
+
     for (int i = 0; i < 6; i++) {
-        string stat_string;
-        string stat_modifier;
+        std::string stat_string;
+        std::string stat_modifier;
         switch (i) {
             case 0: stat_string = "STR"; break;
             case 1: stat_string = "DEX"; break;
@@ -122,10 +124,11 @@ void Character::display_stats() const {
         } else {
             stat_modifier = std::to_string(stat_mod);
         }
-        printf("%s: %3d [%s]\n", stat_string.c_str(), this->stats[i], stat_modifier.c_str());
+        out << stat_string << ": " << std::setw(3) << this->stats[i] << " [" << stat_modifier << "]\n";
     }
-    printf("%s: %d\n", "Hit points", this->hp);
+    out << "Hit points: " << this->hp << '\n';
 }
+
 
 int Character::get_stat_modifier(const int stat) const {
     const int value = this->stats[stat];

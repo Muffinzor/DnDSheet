@@ -31,7 +31,7 @@ public:
     void assign_stats(vector<int> &rolls_);
     void assign_individual_stats(vector<int> &rolls_, int stat);
 
-    void display_stats() const;
+    void display_stats(std::ostream&) const;
     int get_stat_modifier(int stat) const;
 };
 

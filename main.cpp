@@ -16,7 +16,8 @@ int main() {
     character.apply_race_bonus();
     character.set_initial_hp();
     character.set_lvl_hp();
-    character.display_stats();
+    character.display_stats(std::cout);
+    Console::ask_to_print(character);
 
 
     return 0;
