@@ -1,5 +1,8 @@
 #include "Character.h"
 
+#include <iostream>
+#include <vector>
+
 Character::Character() {
     this->character_class = DnD::Class::None;
     this->character_race = DnD::Race::None;
@@ -17,9 +20,10 @@ void Character::set_race(const DnD::Race race_) {
     this->character_race = race_;
 }
 
-void Character::set_stats(const array<int, 6> &stats_) {
-    this->stats = stats_;
+void Character::set_stats(vector<int> &stats_) {
+
 }
+
 
 
 

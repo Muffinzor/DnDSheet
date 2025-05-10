@@ -1,7 +1,3 @@
-//
-// Created by leoin on 2025-05-10.
-//
-
 #ifndef DND_H
 #define DND_H
 

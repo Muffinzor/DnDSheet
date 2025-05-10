@@ -2,6 +2,8 @@
 #define CHARACTER_H
 #include <array>
 #include <string>
+#include <vector>
+
 #include "DnD.h"
 
 using namespace std;
@@ -18,7 +20,9 @@ public:
     void set_name(const string &name);
     void set_class(DnD::Class class_);
     void set_race(DnD::Race race_);
-    void set_stats(const array<int, 6> &stats_);
+    static void set_stats(vector<int> &rolls_);
+
+    static void display_stat_rolls(const vector<int> &rolls_);
 };
 
 #endif //CHARACTER_H
