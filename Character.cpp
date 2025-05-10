@@ -22,6 +22,34 @@ void Character::set_race(const DnD::Race race_) {
     this->character_race = race_;
 }
 
+void Character::set_initial_hp() {
+    int initial_value = 0;
+    switch (this->character_class) {
+        case DnD::Class::Barbarian:
+            initial_value = 12;
+            break;
+        case DnD::Class::Fighter:
+        case DnD::Class::Paladin:
+        case DnD::Class::Ranger:
+            initial_value = 10;
+            break;
+        case DnD::Class::Cleric:
+        case DnD::Class::Druid:
+        case DnD::Class::Bard:
+        case DnD::Class::Rogue:
+        case DnD::Class::Monk:
+        case DnD::Class::Warlock:
+            initial_value = 8;
+            break;
+        case DnD::Class::Wizard:
+        case DnD::Class::Sorcerer:
+            initial_value = 6;
+            break;
+    }
+    this->hp = initial_value + get_stat_modifier(2);
+}
+
+
 void Character::apply_race_bonus() {
     for (int i = 0; i < this->race_bonus.size(); i++) {
         this->stats[i] += this->race_bonus[i];
@@ -57,6 +85,24 @@ void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
     this->stats[stat] = rolls_[choice-1];
     rolls_.erase(rolls_.begin() + (choice-1));
 }
+
+void Character::display_stats() const {
+    printf("%s: %2d (%d)\n", "STR", this->stats[0], get_stat_modifier(0));
+    printf("%s: %2d (%d)\n", "DEX", this->stats[1], get_stat_modifier(1));
+    printf("%s: %2d (%d)\n", "CON", this->stats[2], get_stat_modifier(2));
+    printf("%s: %2d (%d)\n", "INT", this->stats[3], get_stat_modifier(3));
+    printf("%s: %2d (%d)\n", "WIS", this->stats[4], get_stat_modifier(4));
+    printf("%s: %2d (%d)\n", "CHA", this->stats[5], get_stat_modifier(5));
+    printf("%s: %d\n", "Hit points", this->hp);
+}
+
+int Character::get_stat_modifier(const int stat) const {
+    const int value = this->stats[stat];
+    const int modifier = (value/2) - 5;
+    return modifier;
+
+}
+
 
 
 

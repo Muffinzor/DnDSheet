@@ -5,7 +5,7 @@
 #include <iostream>
 #include <random>
 
-int random_int(const int min, const int max) {
+int DiceRoller::random_int(const int min, const int max) {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution dist(min, max);

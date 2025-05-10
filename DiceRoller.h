@@ -6,6 +6,8 @@ using namespace std;
 
 class DiceRoller {
 public:
+    static int random_int(int min, int max);
+
     static vector<int> roll_stats();
     static void confirm_stat_rolls(vector<int> &rolls_);
     static void display_stat_rolls(const vector<int> &rolls_);
