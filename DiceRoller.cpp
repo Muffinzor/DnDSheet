@@ -21,13 +21,13 @@ vector<int> DiceRoller::roll_stats() {
 }
 
 void DiceRoller::confirm_stat_rolls(vector<int> &rolls_) {
-    printf("Here are your rolled stats:\n");
+    printf("Here are your dice rolls to use for stats:\n");
     display_stat_rolls(rolls_);
-    printf("You can mulligan once, do you want to keep these rolls? y/n\n>");
+    printf("You can mulligan once, do you want to keep these rolls? y/n\n> ");
     char choice;
     cin >> choice;
     while (!(choice == 'y' || choice == 'n')) {
-        std::cout << "Invalid choice, please type 'y' or 'n':\n>";
+        std::cout << "Invalid choice, please type 'y' or 'n':\n> ";
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cin >> choice;
@@ -50,6 +50,5 @@ int DiceRoller::stat_roll_4d6() {
     }
     ranges::sort(dices);
     return dices[1] + dices[2] + dices[3];
-
 }
 
