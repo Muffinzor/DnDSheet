@@ -48,16 +48,16 @@ void Console::get_race(Character &character) {
     }
     character.character_race = static_cast<DnD::Race>(choice);
     switch (choice) {
-        case 1: character.race_bonus = {1, 0, 0, 0, 0, 1};
-        case 2: character.race_bonus = {0, 2, 0, 0, 0, 0};
-        case 3: character.race_bonus = {0, 1, 0, 0, 0, 1};
-        case 4: character.race_bonus = {2, 0, 0, 0, 0, 0};
-        case 5: character.race_bonus = {0, 0, 2, 0, 0, 0};
-        case 6: character.race_bonus = {0, 1, 1, 0, 0, 0};
-        case 7: character.race_bonus = {0, 0, 1, 1, 0, 0};
-        case 8: character.race_bonus = {0, 0, 0, 1, 0, 1};
-        case 9: character.race_bonus = {0, 1, 0, 1, 0, 0};
-        case 10: character.race_bonus = {1, 0, 0, 0, 0, 1};
+        case 1: character.race_bonus = {1, 0, 0, 0, 0, 1}; break;
+        case 2: character.race_bonus = {0, 2, 0, 0, 0, 0}; break;
+        case 3: character.race_bonus = {0, 1, 0, 0, 0, 1}; break;
+        case 4: character.race_bonus = {2, 0, 0, 0, 0, 0}; break;
+        case 5: character.race_bonus = {0, 0, 2, 0, 0, 0}; break;
+        case 6: character.race_bonus = {0, 1, 1, 0, 0, 0}; break;
+        case 7: character.race_bonus = {0, 0, 1, 1, 0, 0}; break;
+        case 8: character.race_bonus = {0, 0, 0, 1, 0, 1}; break;
+        case 9: character.race_bonus = {0, 1, 0, 1, 0, 0}; break;
+        case 10: character.race_bonus = {1, 0, 0, 0, 0, 1}; break;
     }
 }
 
