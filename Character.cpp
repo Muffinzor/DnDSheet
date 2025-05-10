@@ -14,6 +14,10 @@ void Character::set_name(const string &name) {
     this->name = name;
 }
 
+void Character::set_level(const int lvl) {
+    this->lvl = lvl;
+}
+
 void Character::set_class(const DnD::Class class_) {
     this->character_class = class_;
 }
@@ -47,6 +51,13 @@ void Character::set_initial_hp() {
             break;
     }
     this->hp = initial_value + get_stat_modifier(2);
+}
+
+void Character::set_lvl_hp() {
+    int base_hp = hp - get_stat_modifier(2);
+    for (int i = 1; i < lvl; i++) {
+        hp += DiceRoller::random_int(1, base_hp) + get_stat_modifier(2);
+    }
 }
 
 
@@ -87,12 +98,27 @@ void Character::assign_individual_stats(vector<int> &rolls_, const int stat) {
 }
 
 void Character::display_stats() const {
-    printf("%s: %2d (%d)\n", "STR", this->stats[0], get_stat_modifier(0));
-    printf("%s: %2d (%d)\n", "DEX", this->stats[1], get_stat_modifier(1));
-    printf("%s: %2d (%d)\n", "CON", this->stats[2], get_stat_modifier(2));
-    printf("%s: %2d (%d)\n", "INT", this->stats[3], get_stat_modifier(3));
-    printf("%s: %2d (%d)\n", "WIS", this->stats[4], get_stat_modifier(4));
-    printf("%s: %2d (%d)\n", "CHA", this->stats[5], get_stat_modifier(5));
+    printf("Name: %s\n", this->name.c_str());
+    printf("Level %d %s\n",this->lvl, DnD::class_to_string(this->character_class).c_str());
+    for (int i = 0; i < 6; i++) {
+        string stat_string;
+        string stat_modifier;
+        switch (i) {
+            case 0: stat_string = "STR"; break;
+            case 1: stat_string = "DEX"; break;
+            case 2: stat_string = "CON"; break;
+            case 3: stat_string = "INT"; break;
+            case 4: stat_string = "WIS"; break;
+            case 5: stat_string = "CHA"; break;
+        }
+        int stat_mod = get_stat_modifier(i);
+        if (stat_mod >= 0) {
+            stat_modifier = "+" + std::to_string(stat_mod);
+        } else {
+            stat_modifier = std::to_string(stat_mod);
+        }
+        printf("%s: %3d [%s]\n", stat_string.c_str(), this->stats[i], stat_modifier.c_str());
+    }
     printf("%s: %d\n", "Hit points", this->hp);
 }
 
@@ -100,7 +126,6 @@ int Character::get_stat_modifier(const int stat) const {
     const int value = this->stats[stat];
     const int modifier = (value/2) - 5;
     return modifier;
-
 }
 
 

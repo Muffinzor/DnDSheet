@@ -15,13 +15,16 @@ public:
     DnD::Race character_race;
     array<int, 6> stats{};
     array<int, 6> race_bonus{};
+    int lvl = 1;
     int hp = 0;
 
     Character();
     void set_name(const string &name);
+    void set_level(int lvl);
     void set_class(DnD::Class class_);
     void set_race(DnD::Race race_);
     void set_initial_hp();
+    void set_lvl_hp();
 
     void apply_race_bonus();
 

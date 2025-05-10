@@ -12,6 +12,19 @@ void Console::get_name(Character &character) {
     std::getline(std::cin, character.name);
 }
 
+void Console::get_lvl(Character &character) {
+    int lvl;
+    std::cout << "What's your character's level:\n";
+    cin >> lvl;
+    while (!(lvl > 0 && lvl <= 20)) {
+        std::cout << "Pick a value between 1 and 20\n>";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> lvl;
+    }
+    character.lvl = lvl;
+}
+
 void Console::get_class(Character &character) {
     int choice;
     std::cout << "Pick your class:\n";

@@ -5,6 +5,7 @@
 class Console {
 public:
     static void get_name(Character &character);
+    static void get_lvl(Character &character);
     static void display_class_choices();
     static void get_class(Character &character);
     static void display_race_choices();
